@@ -1,0 +1,3381 @@
+    ###########################################################################################################################
+
+    #Code for Case Study - 1% budget
+
+    ###########################################################################################################################
+
+    #Sim 1: tau_dis = 10, tau_ch = 1, ff_dis = 1, ff_ch = 1
+    tau_dis = 10
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 196508.5938*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 196508.5938*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 84217.96879*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 84217.96879*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_interior][t]-1.3156)-0.7700*EP[:SOC_interior][t]+0.7606))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_start][t]-1.3156)-0.7700*EP[:SOC_start][t]+0.7606))
+
+    #Sim 2: tau_dis = 10, tau_ch = 1, ff_dis = 1, ff_ch = 5
+    tau_dis = 10
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 195786.2941*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 195786.2941*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 83908.41174*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 83908.41174*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_interior][t]^4+3.7411*EP[:SOC_interior][t]^3-3.1223*EP[:SOC_interior][t]^2-0.1301*EP[:SOC_interior][t]+1.0257))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_start][t]^4+3.7411*EP[:SOC_start][t]^3-3.1223*EP[:SOC_start][t]^2-0.1301*EP[:SOC_start][t]+1.0257))
+
+    #Sim 3: tau_dis = 10, tau_ch = 1, ff_dis = 1, ff_ch = 10
+    tau_dis = 10
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 194712.7458*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 194712.7458*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 83448.31964*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 83448.31964*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_interior][t]^4+5.1436*EP[:SOC_interior][t]^3-4.5976*EP[:SOC_interior][t]^2+0.4422*EP[:SOC_interior][t]+1.0021))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_start][t]^4+5.1436*EP[:SOC_start][t]^3-4.5976*EP[:SOC_start][t]^2+0.4422*EP[:SOC_start][t]+1.0021))
+
+    #Sim 4: tau_dis = 10, tau_ch = 1, ff_dis = 1, ff_ch = 20
+    tau_dis = 10
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 192253.0058*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 192253.0058*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 82394.14534*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 82394.14534*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_interior][t]^4+5.1397*EP[:SOC_interior][t]^3-4.9112*EP[:SOC_interior][t]^2+0.6681*EP[:SOC_interior][t]+0.9903))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_start][t]^4+5.1397*EP[:SOC_start][t]^3-4.9112*EP[:SOC_start][t]^2+0.6681*EP[:SOC_start][t]+0.9903))
+
+    #Sim 5: tau_dis = 10, tau_ch = 1, ff_dis = 1, ff_ch = 50
+    tau_dis = 10
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 185879.4504*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 185879.4504*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 79662.62159*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 79662.62159*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_interior][t]^4+2.4795*EP[:SOC_interior][t]^3-3.4008*EP[:SOC_interior][t]^2+0.4734*EP[:SOC_interior][t]+0.9970))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_start][t]^4+2.4795*EP[:SOC_start][t]^3-3.4008*EP[:SOC_start][t]^2+0.4734*EP[:SOC_start][t]+0.9970))
+
+    #Sim 6: tau_dis = 10, tau_ch = 5, ff_dis = 1, ff_ch = 1
+    tau_dis = 10
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 262314.809*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 262314.809*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 112420.6324*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 112420.6324*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_interior][t]+2.0664)-1.5833))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_start][t]+2.0664)-1.5833))
+
+    #Sim 7: tau_dis = 10, tau_ch = 5, ff_dis = 1, ff_ch = 5
+    tau_dis = 10
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 262056.7008*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 262056.7008*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 112310.0146*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 112310.0146*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_interior][t]+5.5898)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_start][t]+5.5898)+0))
+
+    #Sim 8: tau_dis = 10, tau_ch = 5, ff_dis = 1, ff_ch = 10
+    tau_dis = 10
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 261670.4896*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 261670.4896*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 112144.4955*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 112144.4955*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_interior][t]+6.5455)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_start][t]+6.5455)+0))
+
+    #Sim 9: tau_dis = 10, tau_ch = 5, ff_dis = 1, ff_ch = 20
+    tau_dis = 10
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 260773.7418*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 260773.7418*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 111760.1751*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 111760.1751*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_interior][t]+7.0810)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_start][t]+7.0810)+0))
+
+    #Sim 10: tau_dis = 10, tau_ch = 5, ff_dis = 1, ff_ch = 50
+    tau_dis = 10
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 258370.4093*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 258370.4093*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 110730.1754*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 110730.1754*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_interior][t]+7.3398)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_start][t]+7.3398)+0))
+
+    #Sim 11: tau_dis = 10, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 10
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 273774.9259*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 273774.9259*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 117332.1111*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 117332.1111*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 12: tau_dis = 10, tau_ch = 10, ff_dis = 1, ff_ch = 5
+    tau_dis = 10
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 273634.283*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 273634.283*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 117271.8356*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 117271.8356*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_interior][t]+9.8113)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_start][t]+9.8113)+0))
+
+    #Sim 13: tau_dis = 10, tau_ch = 10, ff_dis = 1, ff_ch = 10
+    tau_dis = 10
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 273423.5894*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 273423.5894*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 117181.5383*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 117181.5383*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_interior][t]+12.1939)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_start][t]+12.1939)+0))
+
+    #Sim 14: tau_dis = 10, tau_ch = 10, ff_dis = 1, ff_ch = 20
+    tau_dis = 10
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 272933.2304*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 272933.2304*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 116971.3845*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 116971.3845*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_interior][t]+13.6419)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_start][t]+13.6419)+0))
+
+    #Sim 15: tau_dis = 10, tau_ch = 10, ff_dis = 1, ff_ch = 50
+    tau_dis = 10
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 271611.0792*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 271611.0792*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 116404.7482*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 116404.7482*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_interior][t]+14.4626)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_start][t]+14.4626)+0))
+
+    #Sim 16: tau_dis = 10, tau_ch = 50, ff_dis = 1, ff_ch = 1
+    tau_dis = 10
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 283690.1014*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 283690.1014*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 121581.472*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 121581.472*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_interior][t]+5.6406)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_start][t]+5.6406)+0))
+
+    #Sim 17: tau_dis = 10, tau_ch = 50, ff_dis = 1, ff_ch = 5
+    tau_dis = 10
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 283659.8862*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 283659.8862*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 121568.5227*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 121568.5227*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_interior][t]+29.9037)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_start][t]+29.9037)+0))
+
+    #Sim 18: tau_dis = 10, tau_ch = 50, ff_dis = 1, ff_ch = 10
+    tau_dis = 10
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 283614.5755*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 283614.5755*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 121549.1038*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 121549.1038*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_interior][t]+43.4860)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_start][t]+43.4860)+0))
+
+    #Sim 19: tau_dis = 10, tau_ch = 50, ff_dis = 1, ff_ch = 20
+    tau_dis = 10
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 283508.9066*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 283508.9066*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 121503.8171*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 121503.8171*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_interior][t]+56.9838)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_start][t]+56.9838)+0))
+
+    #Sim 20: tau_dis = 10, tau_ch = 50, ff_dis = 1, ff_ch = 50
+    tau_dis = 10
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 283222.4877*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 283222.4877*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 121381.0662*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 121381.0662*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_interior][t]+66.5917)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_start][t]+66.5917)+0))
+
+    #Sim 21: tau_dis = 10, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 10
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 284980.2255*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 284980.2255*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 122134.3824*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 122134.3824*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 22: tau_dis = 10, tau_ch = 100, ff_dis = 1, ff_ch = 5
+    tau_dis = 10
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 284964.9794*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 284964.9794*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 122127.8483*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 122127.8483*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_interior][t]+39.5456)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_start][t]+39.5456)+0))
+
+    #Sim 23: tau_dis = 10, tau_ch = 100, ff_dis = 1, ff_ch = 10
+    tau_dis = 10
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 284942.1132*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 284942.1132*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 122118.0485*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 122118.0485*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_interior][t]+67.8862)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_start][t]+67.8862)+0))
+
+    #Sim 24: tau_dis = 10, tau_ch = 100, ff_dis = 1, ff_ch = 20
+    tau_dis = 10
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 284888.7731*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 284888.7731*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 122095.1885*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 122095.1885*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_interior][t]+92.2283)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_start][t]+92.2283)+0))
+
+    #Sim 25: tau_dis = 10, tau_ch = 100, ff_dis = 1, ff_ch = 50
+    tau_dis = 10
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 284744.0935*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 284744.0935*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 122033.1829*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 122033.1829*0.01
+    end
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_interior][t]+0.3822)-0.6622))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.6898*tanh(2.4149*EP[:SOC_start][t]+0.3822)-0.6622))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_interior][t]+136.7287)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_start][t]+136.7287)+0))
+
+    #Sim 26: tau_dis = 18, tau_ch = 1, ff_dis = 1, ff_ch = 1
+    tau_dis = 18
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 255551.2948*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 255551.2948*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 109521.9835*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 109521.9835*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_interior][t]-1.3156)-0.7700*EP[:SOC_interior][t]+0.7606))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_start][t]-1.3156)-0.7700*EP[:SOC_start][t]+0.7606))
+
+    #Sim 27: tau_dis = 18, tau_ch = 1, ff_dis = 1, ff_ch = 5
+    tau_dis = 18
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 254331.0944*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 254331.0944*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 108999.0404*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 108999.0404*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_interior][t]^4+3.7411*EP[:SOC_interior][t]^3-3.1223*EP[:SOC_interior][t]^2-0.1301*EP[:SOC_interior][t]+1.0257))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_start][t]^4+3.7411*EP[:SOC_start][t]^3-3.1223*EP[:SOC_start][t]^2-0.1301*EP[:SOC_start][t]+1.0257))
+
+    #Sim 28: tau_dis = 18, tau_ch = 1, ff_dis = 1, ff_ch = 10
+    tau_dis = 18
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 252522.4865*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 252522.4865*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 108223.9228*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 108223.9228*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_interior][t]^4+5.1436*EP[:SOC_interior][t]^3-4.5976*EP[:SOC_interior][t]^2+0.4422*EP[:SOC_interior][t]+1.0021))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_start][t]^4+5.1436*EP[:SOC_start][t]^3-4.5976*EP[:SOC_start][t]^2+0.4422*EP[:SOC_start][t]+1.0021))
+
+    #Sim 29: tau_dis = 18, tau_ch = 1, ff_dis = 1, ff_ch = 20
+    tau_dis = 18
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 248400.802*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 248400.802*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 106457.4866*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 106457.4866*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_interior][t]^4+5.1397*EP[:SOC_interior][t]^3-4.9112*EP[:SOC_interior][t]^2+0.6681*EP[:SOC_interior][t]+0.9903))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_start][t]^4+5.1397*EP[:SOC_start][t]^3-4.9112*EP[:SOC_start][t]^2+0.6681*EP[:SOC_start][t]+0.9903))
+
+    #Sim 30: tau_dis = 18, tau_ch = 1, ff_dis = 1, ff_ch = 50
+    tau_dis = 18
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 237862.8351*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 237862.8351*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 101941.215*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 101941.215*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_interior][t]^4+2.4795*EP[:SOC_interior][t]^3-3.4008*EP[:SOC_interior][t]^2+0.4734*EP[:SOC_interior][t]+0.9970))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_start][t]^4+2.4795*EP[:SOC_start][t]^3-3.4008*EP[:SOC_start][t]^2+0.4734*EP[:SOC_start][t]+0.9970))
+
+    #Sim 31: tau_dis = 18, tau_ch = 5, ff_dis = 1, ff_ch = 1
+    tau_dis = 18
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 379292.7347*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 379292.7347*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 162554.0292*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 162554.0292*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_interior][t]+2.0664)-1.5833))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_start][t]+2.0664)-1.5833))
+
+    #Sim 32: tau_dis = 18, tau_ch = 5, ff_dis = 1, ff_ch = 5
+    tau_dis = 18
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 378753.3302*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 378753.3302*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 162322.8558*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 162322.8558*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_interior][t]+5.5898)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_start][t]+5.5898)+0))
+
+    #Sim 33: tau_dis = 18, tau_ch = 5, ff_dis = 1, ff_ch = 10
+    tau_dis = 18
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 377947.0938*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 377947.0938*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 161977.3259*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 161977.3259*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_interior][t]+6.5455)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_start][t]+6.5455)+0))
+
+    #Sim 34: tau_dis = 18, tau_ch = 5, ff_dis = 1, ff_ch = 20
+    tau_dis = 18
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 376079.158*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 376079.158*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 161176.782*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 161176.782*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_interior][t]+7.0810)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_start][t]+7.0810)+0))
+
+    #Sim 35: tau_dis = 18, tau_ch = 5, ff_dis = 1, ff_ch = 50
+    tau_dis = 18
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 371100.8873*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 371100.8873*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 159043.2374*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 159043.2374*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_interior][t]+7.3398)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_start][t]+7.3398)+0))
+
+    #Sim 36: tau_dis = 18, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 18
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 403729.1322*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 403729.1322*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 173026.771*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 173026.771*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 37: tau_dis = 18, tau_ch = 10, ff_dis = 1, ff_ch = 5
+    tau_dis = 18
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 403423.3553*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 403423.3553*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 172895.7237*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 172895.7237*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_interior][t]+9.8113)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_start][t]+9.8113)+0))
+
+    #Sim 38: tau_dis = 18, tau_ch = 10, ff_dis = 1, ff_ch = 10
+    tau_dis = 18
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 402965.5573*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 402965.5573*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 172699.5245*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 172699.5245*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_interior][t]+12.1939)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_start][t]+12.1939)+0))
+
+    #Sim 39: tau_dis = 18, tau_ch = 10, ff_dis = 1, ff_ch = 20
+    tau_dis = 18
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 401901.3919*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 401901.3919*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 172243.4537*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 172243.4537*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_interior][t]+13.6419)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_start][t]+13.6419)+0))
+
+    #Sim 40: tau_dis = 18, tau_ch = 10, ff_dis = 1, ff_ch = 50
+    tau_dis = 18
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 399041.0736*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 399041.0736*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 171017.603*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 171017.603*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_interior][t]+14.4626)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_start][t]+14.4626)+0))
+
+    #Sim 41: tau_dis = 18, tau_ch = 50, ff_dis = 1, ff_ch = 1
+    tau_dis = 18
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 425668.5026*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 425668.5026*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 182429.3582*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 182429.3582*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_interior][t]+5.6406)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_start][t]+5.6406)+0))
+
+    #Sim 42: tau_dis = 18, tau_ch = 50, ff_dis = 1, ff_ch = 5
+    tau_dis = 18
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 425600.4793*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 425600.4793*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 182400.2054*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 182400.2054*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_interior][t]+29.9037)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_start][t]+29.9037)+0))
+
+    #Sim 43: tau_dis = 18, tau_ch = 50, ff_dis = 1, ff_ch = 10
+    tau_dis = 18
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 425498.4853*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 425498.4853*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 182356.4937*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 182356.4937*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_interior][t]+43.4860)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_start][t]+43.4860)+0))
+
+    #Sim 44: tau_dis = 18, tau_ch = 50, ff_dis = 1, ff_ch = 20
+    tau_dis = 18
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 425260.689*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 425260.689*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 182254.581*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 182254.581*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_interior][t]+56.9838)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_start][t]+56.9838)+0))
+
+    #Sim 45: tau_dis = 18, tau_ch = 50, ff_dis = 1, ff_ch = 50
+    tau_dis = 18
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 424616.5799*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 424616.5799*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 181978.5343*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 181978.5343*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_interior][t]+66.5917)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_start][t]+66.5917)+0))
+
+    #Sim 46: tau_dis = 18, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 18
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 428579.7272*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 428579.7272*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 183677.0259*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 183677.0259*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 47: tau_dis = 18, tau_ch = 100, ff_dis = 1, ff_ch = 5
+    tau_dis = 18
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 428545.246*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 428545.246*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 183662.2483*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 183662.2483*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_interior][t]+39.5456)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_start][t]+39.5456)+0))
+
+    #Sim 48: tau_dis = 18, tau_ch = 100, ff_dis = 1, ff_ch = 10
+    tau_dis = 18
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 428493.5346*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 428493.5346*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 183640.0863*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 183640.0863*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_interior][t]+67.8862)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_start][t]+67.8862)+0))
+
+    #Sim 49: tau_dis = 18, tau_ch = 100, ff_dis = 1, ff_ch = 20
+    tau_dis = 18
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 428372.9233*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 428372.9233*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 183588.3957*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 183588.3957*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_interior][t]+92.2283)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_start][t]+92.2283)+0))
+
+    #Sim 50: tau_dis = 18, tau_ch = 100, ff_dis = 1, ff_ch = 50
+    tau_dis = 18
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 428045.8918*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 428045.8918*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 183448.2394*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 183448.2394*0.01
+    end
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_interior][t]+0)-0.0508))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0529*tanh(3.8501*EP[:SOC_start][t]+0)-0.0508))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_interior][t]+136.7287)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_start][t]+136.7287)+0))
+
+    #Sim 51: tau_dis = 32, tau_ch = 1, ff_dis = 1, ff_ch = 1
+    tau_dis = 32
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 305475.8241*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 305475.8241*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 130918.2103*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 130918.2103*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_interior][t]-1.3156)-0.7700*EP[:SOC_interior][t]+0.7606))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_start][t]-1.3156)-0.7700*EP[:SOC_start][t]+0.7606))
+
+    #Sim 52: tau_dis = 32, tau_ch = 1, ff_dis = 1, ff_ch = 5
+    tau_dis = 32
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 303733.9219*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 303733.9219*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 130171.6808*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 130171.6808*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_interior][t]^4+3.7411*EP[:SOC_interior][t]^3-3.1223*EP[:SOC_interior][t]^2-0.1301*EP[:SOC_interior][t]+1.0257))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_start][t]^4+3.7411*EP[:SOC_start][t]^3-3.1223*EP[:SOC_start][t]^2-0.1301*EP[:SOC_start][t]+1.0257))
+
+    #Sim 53: tau_dis = 32, tau_ch = 1, ff_dis = 1, ff_ch = 10
+    tau_dis = 32
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 301158.0005*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 301158.0005*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 129067.7145*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 129067.7145*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_interior][t]^4+5.1436*EP[:SOC_interior][t]^3-4.5976*EP[:SOC_interior][t]^2+0.4422*EP[:SOC_interior][t]+1.0021))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_start][t]^4+5.1436*EP[:SOC_start][t]^3-4.5976*EP[:SOC_start][t]^2+0.4422*EP[:SOC_start][t]+1.0021))
+
+    #Sim 54: tau_dis = 32, tau_ch = 1, ff_dis = 1, ff_ch = 20
+    tau_dis = 32
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 295314.1335*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 295314.1335*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 126563.2001*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 126563.2001*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_interior][t]^4+5.1397*EP[:SOC_interior][t]^3-4.9112*EP[:SOC_interior][t]^2+0.6681*EP[:SOC_interior][t]+0.9903))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_start][t]^4+5.1397*EP[:SOC_start][t]^3-4.9112*EP[:SOC_start][t]^2+0.6681*EP[:SOC_start][t]+0.9903))
+
+    #Sim 55: tau_dis = 32, tau_ch = 1, ff_dis = 1, ff_ch = 50
+    tau_dis = 32
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 280538.2465*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 280538.2465*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 120230.6771*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 120230.6771*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_interior][t]^4+2.4795*EP[:SOC_interior][t]^3-3.4008*EP[:SOC_interior][t]^2+0.4734*EP[:SOC_interior][t]+0.9970))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_start][t]^4+2.4795*EP[:SOC_start][t]^3-3.4008*EP[:SOC_start][t]^2+0.4734*EP[:SOC_start][t]+0.9970))
+
+    #Sim 56: tau_dis = 32, tau_ch = 5, ff_dis = 1, ff_ch = 1
+    tau_dis = 32
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 500761.4582*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 500761.4582*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 214612.0535*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 214612.0535*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_interior][t]+2.0664)-1.5833))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_start][t]+2.0664)-1.5833))
+
+    #Sim 57: tau_dis = 32, tau_ch = 5, ff_dis = 1, ff_ch = 5
+    tau_dis = 32
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 499821.6708*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 499821.6708*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 214209.2875*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 214209.2875*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_interior][t]+5.5898)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_start][t]+5.5898)+0))
+
+    #Sim 58: tau_dis = 32, tau_ch = 5, ff_dis = 1, ff_ch = 10
+    tau_dis = 32
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 498418.5851*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 498418.5851*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 213607.965*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 213607.965*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_interior][t]+6.5455)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_start][t]+6.5455)+0))
+
+    #Sim 59: tau_dis = 32, tau_ch = 5, ff_dis = 1, ff_ch = 20
+    tau_dis = 32
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 495175.1534*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 495175.1534*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 212217.9229*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 212217.9229*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_interior][t]+7.0810)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_start][t]+7.0810)+0))
+
+    #Sim 60: tau_dis = 32, tau_ch = 5, ff_dis = 1, ff_ch = 50
+    tau_dis = 32
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 486580.6474*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 486580.6474*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 208534.5632*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 208534.5632*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_interior][t]+7.3398)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_start][t]+7.3398)+0))
+
+    #Sim 61: tau_dis = 32, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 32
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 544252.9447*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 544252.9447*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 233251.262*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 233251.262*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 62: tau_dis = 32, tau_ch = 10, ff_dis = 1, ff_ch = 5
+    tau_dis = 32
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 543697.4094*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 543697.4094*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 233013.1754*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 233013.1754*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_interior][t]+9.8113)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_start][t]+9.8113)+0))
+
+    #Sim 63: tau_dis = 32, tau_ch = 10, ff_dis = 1, ff_ch = 10
+    tau_dis = 32
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 542866.2295*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 542866.2295*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 232656.9555*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 232656.9555*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_interior][t]+12.1939)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_start][t]+12.1939)+0))
+
+    #Sim 64: tau_dis = 32, tau_ch = 10, ff_dis = 1, ff_ch = 20
+    tau_dis = 32
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 540936.6578*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 540936.6578*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 231829.9962*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 231829.9962*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_interior][t]+13.6419)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_start][t]+13.6419)+0))
+
+    #Sim 65: tau_dis = 32, tau_ch = 10, ff_dis = 1, ff_ch = 50
+    tau_dis = 32
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 535767.733*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 535767.733*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 229614.7427*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 229614.7427*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_interior][t]+14.4626)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_start][t]+14.4626)+0))
+
+    #Sim 66: tau_dis = 32, tau_ch = 50, ff_dis = 1, ff_ch = 1
+    tau_dis = 32
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 584891.5395*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 584891.5395*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 250667.8026*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 250667.8026*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_interior][t]+5.6406)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_start][t]+5.6406)+0))
+
+    #Sim 67: tau_dis = 32, tau_ch = 50, ff_dis = 1, ff_ch = 5
+    tau_dis = 32
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 584763.1176*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 584763.1176*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 250612.7647*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 250612.7647*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_interior][t]+29.9037)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_start][t]+29.9037)+0))
+
+    #Sim 68: tau_dis = 32, tau_ch = 50, ff_dis = 1, ff_ch = 10
+    tau_dis = 32
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 584570.5905*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 584570.5905*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 250530.2531*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 250530.2531*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_interior][t]+43.4860)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_start][t]+43.4860)+0))
+
+    #Sim 69: tau_dis = 32, tau_ch = 50, ff_dis = 1, ff_ch = 20
+    tau_dis = 32
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 584121.8533*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 584121.8533*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 250337.9371*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 250337.9371*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_interior][t]+56.9838)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_start][t]+56.9838)+0))
+
+    #Sim 70: tau_dis = 32, tau_ch = 50, ff_dis = 1, ff_ch = 50
+    tau_dis = 32
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 582907.3178*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 582907.3178*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 249817.4219*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 249817.4219*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_interior][t]+66.5917)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_start][t]+66.5917)+0))
+
+    #Sim 71: tau_dis = 32, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 32
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 590402.1003*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 590402.1003*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 253029.4716*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 253029.4716*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 72: tau_dis = 32, tau_ch = 100, ff_dis = 1, ff_ch = 5
+    tau_dis = 32
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 590336.6666*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 590336.6666*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 253001.4286*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 253001.4286*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_interior][t]+39.5456)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_start][t]+39.5456)+0))
+
+    #Sim 73: tau_dis = 32, tau_ch = 100, ff_dis = 1, ff_ch = 10
+    tau_dis = 32
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 590238.5433*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 590238.5433*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 252959.3757*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 252959.3757*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_interior][t]+67.8862)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_start][t]+67.8862)+0))
+
+    #Sim 74: tau_dis = 32, tau_ch = 100, ff_dis = 1, ff_ch = 20
+    tau_dis = 32
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 590009.7157*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 590009.7157*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 252861.3067*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 252861.3067*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_interior][t]+92.2283)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_start][t]+92.2283)+0))
+
+    #Sim 75: tau_dis = 32, tau_ch = 100, ff_dis = 1, ff_ch = 50
+    tau_dis = 32
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 589389.5057*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 589389.5057*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 252595.5024*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 252595.5024*0.01
+    end
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_interior][t]+0)-0.0751))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0745*tanh(4.8729*EP[:SOC_start][t]+0)-0.0751))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_interior][t]+136.7287)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_start][t]+136.7287)+0))
+
+    #Sim 76: tau_dis = 56, tau_ch = 1, ff_dis = 1, ff_ch = 1
+    tau_dis = 56
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 342197.2361*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 342197.2361*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 146655.9583*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 146655.9583*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_interior][t]-1.3156)-0.7700*EP[:SOC_interior][t]+0.7606))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_start][t]-1.3156)-0.7700*EP[:SOC_start][t]+0.7606))
+
+    #Sim 77: tau_dis = 56, tau_ch = 1, ff_dis = 1, ff_ch = 5
+    tau_dis = 56
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 340012.8696*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 340012.8696*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 145719.8013*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 145719.8013*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_interior][t]^4+3.7411*EP[:SOC_interior][t]^3-3.1223*EP[:SOC_interior][t]^2-0.1301*EP[:SOC_interior][t]+1.0257))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_start][t]^4+3.7411*EP[:SOC_start][t]^3-3.1223*EP[:SOC_start][t]^2-0.1301*EP[:SOC_start][t]+1.0257))
+
+    #Sim 78: tau_dis = 56, tau_ch = 1, ff_dis = 1, ff_ch = 10
+    tau_dis = 56
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 336788.1125*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 336788.1125*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 144337.7625*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 144337.7625*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_interior][t]^4+5.1436*EP[:SOC_interior][t]^3-4.5976*EP[:SOC_interior][t]^2+0.4422*EP[:SOC_interior][t]+1.0021))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_start][t]^4+5.1436*EP[:SOC_start][t]^3-4.5976*EP[:SOC_start][t]^2+0.4422*EP[:SOC_start][t]+1.0021))
+
+    #Sim 79: tau_dis = 56, tau_ch = 1, ff_dis = 1, ff_ch = 20
+    tau_dis = 56
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 329496.4069*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 329496.4069*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 141212.7458*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 141212.7458*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_interior][t]^4+5.1397*EP[:SOC_interior][t]^3-4.9112*EP[:SOC_interior][t]^2+0.6681*EP[:SOC_interior][t]+0.9903))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_start][t]^4+5.1397*EP[:SOC_start][t]^3-4.9112*EP[:SOC_start][t]^2+0.6681*EP[:SOC_start][t]+0.9903))
+
+    #Sim 80: tau_dis = 56, tau_ch = 1, ff_dis = 1, ff_ch = 50
+    tau_dis = 56
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 311207.8883*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 311207.8883*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 133374.8093*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 133374.8093*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_interior][t]^4+2.4795*EP[:SOC_interior][t]^3-3.4008*EP[:SOC_interior][t]^2+0.4734*EP[:SOC_interior][t]+0.9970))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_start][t]^4+2.4795*EP[:SOC_start][t]^3-3.4008*EP[:SOC_start][t]^2+0.4734*EP[:SOC_start][t]+0.9970))
+
+    #Sim 81: tau_dis = 56, tau_ch = 5, ff_dis = 1, ff_ch = 1
+    tau_dis = 56
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 607655.7565*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 607655.7565*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 260423.8956*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 260423.8956*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_interior][t]+2.0664)-1.5833))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_start][t]+2.0664)-1.5833))
+
+    #Sim 82: tau_dis = 56, tau_ch = 5, ff_dis = 1, ff_ch = 5
+    tau_dis = 56
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 606272.4797*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 606272.4797*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 259831.0627*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 259831.0627*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_interior][t]+5.5898)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_start][t]+5.5898)+0))
+
+    #Sim 83: tau_dis = 56, tau_ch = 5, ff_dis = 1, ff_ch = 10
+    tau_dis = 56
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 604209.3326*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 604209.3326*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 258946.8568*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 258946.8568*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_interior][t]+6.5455)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_start][t]+6.5455)+0))
+
+    #Sim 84: tau_dis = 56, tau_ch = 5, ff_dis = 1, ff_ch = 20
+    tau_dis = 56
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 599449.4996*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 599449.4996*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 256906.9284*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 256906.9284*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_interior][t]+7.0810)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_start][t]+7.0810)+0))
+
+    #Sim 85: tau_dis = 56, tau_ch = 5, ff_dis = 1, ff_ch = 50
+    tau_dis = 56
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 586900.0694*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 586900.0694*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 251528.6012*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 251528.6012*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_interior][t]+7.3398)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_start][t]+7.3398)+0))
+
+    #Sim 86: tau_dis = 56, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 56
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 672906.4075*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 672906.4075*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 288388.4603*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 288388.4603*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 87: tau_dis = 56, tau_ch = 10, ff_dis = 1, ff_ch = 5
+    tau_dis = 56
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 672057.3938*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 672057.3938*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 288024.5974*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 288024.5974*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_interior][t]+9.8113)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_start][t]+9.8113)+0))
+
+    #Sim 88: tau_dis = 56, tau_ch = 10, ff_dis = 1, ff_ch = 10
+    tau_dis = 56
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 670787.8828*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 670787.8828*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 287480.5212*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 287480.5212*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_interior][t]+12.1939)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_start][t]+12.1939)+0))
+
+    #Sim 89: tau_dis = 56, tau_ch = 10, ff_dis = 1, ff_ch = 20
+    tau_dis = 56
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 667844.2605*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 667844.2605*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 286218.9688*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 286218.9688*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_interior][t]+13.6419)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_start][t]+13.6419)+0))
+
+    #Sim 90: tau_dis = 56, tau_ch = 10, ff_dis = 1, ff_ch = 50
+    tau_dis = 56
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 659983.125*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 659983.125*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 282849.9107*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 282849.9107*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_interior][t]+14.4626)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_start][t]+14.4626)+0))
+
+    #Sim 91: tau_dis = 56, tau_ch = 50, ff_dis = 1, ff_ch = 1
+    tau_dis = 56
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 736144.7436*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 736144.7436*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 315490.6044*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 315490.6044*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_interior][t]+5.6406)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_start][t]+5.6406)+0))
+
+    #Sim 92: tau_dis = 56, tau_ch = 50, ff_dis = 1, ff_ch = 5
+    tau_dis = 56
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 735941.3253*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 735941.3253*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 315403.4251*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 315403.4251*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_interior][t]+29.9037)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_start][t]+29.9037)+0))
+
+    #Sim 93: tau_dis = 56, tau_ch = 50, ff_dis = 1, ff_ch = 10
+    tau_dis = 56
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 735636.4085*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 735636.4085*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 315272.7465*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 315272.7465*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_interior][t]+43.4860)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_start][t]+43.4860)+0))
+
+    #Sim 94: tau_dis = 56, tau_ch = 50, ff_dis = 1, ff_ch = 20
+    tau_dis = 56
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 734925.9177*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 734925.9177*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 314968.2505*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 314968.2505*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_interior][t]+56.9838)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_start][t]+56.9838)+0))
+
+    #Sim 95: tau_dis = 56, tau_ch = 50, ff_dis = 1, ff_ch = 50
+    tau_dis = 56
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 733004.3427*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 733004.3427*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 314144.7183*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 314144.7183*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_interior][t]+66.5917)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_start][t]+66.5917)+0))
+
+    #Sim 96: tau_dis = 56, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 56
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 744895.2052*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 744895.2052*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 319240.8022*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 319240.8022*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 97: tau_dis = 56, tau_ch = 100, ff_dis = 1, ff_ch = 5
+    tau_dis = 56
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 744791.0495*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 744791.0495*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 319196.1641*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 319196.1641*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_interior][t]+39.5456)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_start][t]+39.5456)+0))
+
+    #Sim 98: tau_dis = 56, tau_ch = 100, ff_dis = 1, ff_ch = 10
+    tau_dis = 56
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 744634.8704*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 744634.8704*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 319129.2302*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 319129.2302*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_interior][t]+67.8862)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_start][t]+67.8862)+0))
+
+    #Sim 99: tau_dis = 56, tau_ch = 100, ff_dis = 1, ff_ch = 20
+    tau_dis = 56
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 744270.7073*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 744270.7073*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 318973.1603*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 318973.1603*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_interior][t]+92.2283)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_start][t]+92.2283)+0))
+
+    #Sim 100: tau_dis = 56, tau_ch = 100, ff_dis = 1, ff_ch = 50
+    tau_dis = 56
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 743284.0576*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 743284.0576*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 318550.3104*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 318550.3104*0.01
+    end
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_interior][t]+0)-0.0920))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0914*tanh(5.6270*EP[:SOC_start][t]+0)-0.0920))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_interior][t]+136.7287)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_start][t]+136.7287)+0))
+
+    #Sim 101: tau_dis = 100, tau_ch = 1, ff_dis = 1, ff_ch = 1
+    tau_dis = 100
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 368095.1442*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 368095.1442*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 157755.0618*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 157755.0618*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_interior][t]-1.3156)-0.7700*EP[:SOC_interior][t]+0.7606))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-36.2870*EP[:SOC_start][t]-1.3156)-0.7700*EP[:SOC_start][t]+0.7606))
+
+    #Sim 102: tau_dis = 100, tau_ch = 1, ff_dis = 1, ff_ch = 5
+    tau_dis = 100
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 365568.8558*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 365568.8558*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 156672.3668*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 156672.3668*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_interior][t]^4+3.7411*EP[:SOC_interior][t]^3-3.1223*EP[:SOC_interior][t]^2-0.1301*EP[:SOC_interior][t]+1.0257))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.5332*EP[:SOC_start][t]^4+3.7411*EP[:SOC_start][t]^3-3.1223*EP[:SOC_start][t]^2-0.1301*EP[:SOC_start][t]+1.0257))
+
+    #Sim 103: tau_dis = 100, tau_ch = 1, ff_dis = 1, ff_ch = 10
+    tau_dis = 100
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 361843.7793*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 361843.7793*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 155075.9054*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 155075.9054*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_interior][t]^4+5.1436*EP[:SOC_interior][t]^3-4.5976*EP[:SOC_interior][t]^2+0.4422*EP[:SOC_interior][t]+1.0021))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-2.0030*EP[:SOC_start][t]^4+5.1436*EP[:SOC_start][t]^3-4.5976*EP[:SOC_start][t]^2+0.4422*EP[:SOC_start][t]+1.0021))
+
+    #Sim 104: tau_dis = 100, tau_ch = 1, ff_dis = 1, ff_ch = 20
+    tau_dis = 100
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 353440.3051*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 353440.3051*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 151474.4165*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 151474.4165*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_interior][t]^4+5.1397*EP[:SOC_interior][t]^3-4.9112*EP[:SOC_interior][t]^2+0.6681*EP[:SOC_interior][t]+0.9903))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-1.8863*EP[:SOC_start][t]^4+5.1397*EP[:SOC_start][t]^3-4.9112*EP[:SOC_start][t]^2+0.6681*EP[:SOC_start][t]+0.9903))
+
+    #Sim 105: tau_dis = 100, tau_ch = 1, ff_dis = 1, ff_ch = 50
+    tau_dis = 100
+	tau_ch = 1
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 332481.7593*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 332481.7593*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 142492.1826*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 142492.1826*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_interior][t]^4+2.4795*EP[:SOC_interior][t]^3-3.4008*EP[:SOC_interior][t]^2+0.4734*EP[:SOC_interior][t]+0.9970))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.5140*EP[:SOC_start][t]^4+2.4795*EP[:SOC_start][t]^3-3.4008*EP[:SOC_start][t]^2+0.4734*EP[:SOC_start][t]+0.9970))
+
+    #Sim 106: tau_dis = 100, tau_ch = 5, ff_dis = 1, ff_ch = 1
+    tau_dis = 100
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 694412.501*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 694412.501*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 297605.3576*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 297605.3576*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_interior][t]+2.0664)-1.5833))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (2.6872*tanh(-1.4124*EP[:SOC_start][t]+2.0664)-1.5833))
+
+    #Sim 107: tau_dis = 100, tau_ch = 5, ff_dis = 1, ff_ch = 5
+    tau_dis = 100
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 692606.6255*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 692606.6255*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 296831.4109*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 296831.4109*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_interior][t]+5.5898)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.6916*EP[:SOC_start][t]+5.5898)+0))
+
+    #Sim 108: tau_dis = 100, tau_ch = 5, ff_dis = 1, ff_ch = 10
+    tau_dis = 100
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 689915.355*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 689915.355*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 295678.0093*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 295678.0093*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_interior][t]+6.5455)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.6700*EP[:SOC_start][t]+6.5455)+0))
+
+    #Sim 109: tau_dis = 100, tau_ch = 5, ff_dis = 1, ff_ch = 20
+    tau_dis = 100
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 683716.3292*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 683716.3292*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 293021.2839*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 293021.2839*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_interior][t]+7.0810)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.2095*EP[:SOC_start][t]+7.0810)+0))
+
+    #Sim 110: tau_dis = 100, tau_ch = 5, ff_dis = 1, ff_ch = 50
+    tau_dis = 100
+	tau_ch = 5
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 667438.5745*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 667438.5745*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 286045.1034*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 286045.1034*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_interior][t]+7.3398)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-7.4409*EP[:SOC_start][t]+7.3398)+0))
+
+    #Sim 111: tau_dis = 100, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 100
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 780952.0144*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 780952.0144*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 334693.7205*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 334693.7205*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0724*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 112: tau_dis = 100, tau_ch = 10, ff_dis = 1, ff_ch = 5
+    tau_dis = 100
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 779808.699*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 779808.699*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 334203.7281*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 334203.7281*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_interior][t]+9.8113)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-9.9854*EP[:SOC_start][t]+9.8113)+0))
+
+    #Sim 113: tau_dis = 100, tau_ch = 10, ff_dis = 1, ff_ch = 10
+    tau_dis = 100
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 778099.9889*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 778099.9889*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 333471.4238*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 333471.4238*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_interior][t]+12.1939)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-12.4222*EP[:SOC_start][t]+12.1939)+0))
+
+    #Sim 114: tau_dis = 100, tau_ch = 10, ff_dis = 1, ff_ch = 20
+    tau_dis = 100
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 774141.9714*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 774141.9714*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 331775.1306*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 331775.1306*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_interior][t]+13.6419)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-13.8872*EP[:SOC_start][t]+13.6419)+0))
+
+    #Sim 115: tau_dis = 100, tau_ch = 10, ff_dis = 1, ff_ch = 50
+    tau_dis = 100
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 763598.9955*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 763598.9955*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 327256.7124*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 327256.7124*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_interior][t]+14.4626)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-14.7068*EP[:SOC_start][t]+14.4626)+0))
+
+    #Sim 116: tau_dis = 100, tau_ch = 50, ff_dis = 1, ff_ch = 1
+    tau_dis = 100
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 867433.4898*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 867433.4898*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 371757.2099*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 371757.2099*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_interior][t]+5.6406)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7263*EP[:SOC_start][t]+5.6406)+0))
+
+    #Sim 117: tau_dis = 100, tau_ch = 50, ff_dis = 1, ff_ch = 5
+    tau_dis = 100
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 867151.0574*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 867151.0574*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 371636.1675*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 371636.1675*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_interior][t]+29.9037)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-30.4555*EP[:SOC_start][t]+29.9037)+0))
+
+    #Sim 118: tau_dis = 100, tau_ch = 50, ff_dis = 1, ff_ch = 10
+    tau_dis = 100
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 866727.7534*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 866727.7534*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 371454.7515*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 371454.7515*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_interior][t]+43.4860)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-44.3218*EP[:SOC_start][t]+43.4860)+0))
+
+    #Sim 119: tau_dis = 100, tau_ch = 50, ff_dis = 1, ff_ch = 20
+    tau_dis = 100
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 865741.6495*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 865741.6495*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 371032.1355*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 371032.1355*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_interior][t]+56.9838)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-58.0692*EP[:SOC_start][t]+56.9838)+0))
+
+    #Sim 120: tau_dis = 100, tau_ch = 50, ff_dis = 1, ff_ch = 50
+    tau_dis = 100
+	tau_ch = 50
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 863076.3576*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 863076.3576*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 369889.8675*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 369889.8675*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_interior][t]+66.5917)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-67.9052*EP[:SOC_start][t]+66.5917)+0))
+
+    #Sim 121: tau_dis = 100, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 100
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 879609.3199*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 879609.3199*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 376975.4228*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 376975.4228*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0170 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0948*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 122: tau_dis = 100, tau_ch = 100, ff_dis = 1, ff_ch = 5
+    tau_dis = 100
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 5
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 879464.0881*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 879464.0881*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 376913.1806*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 376913.1806*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0172 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_interior][t]+39.5456)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-40.3400*EP[:SOC_start][t]+39.5456)+0))
+
+    #Sim 123: tau_dis = 100, tau_ch = 100, ff_dis = 1, ff_ch = 10
+    tau_dis = 100
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 10
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 879246.3304*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 879246.3304*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 376819.8559*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 376819.8559*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0175 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_interior][t]+67.8862)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-69.2838*EP[:SOC_start][t]+67.8862)+0))
+
+    #Sim 124: tau_dis = 100, tau_ch = 100, ff_dis = 1, ff_ch = 20
+    tau_dis = 100
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 20
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 878738.6481*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 878738.6481*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 376602.2778*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 376602.2778*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0182 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_interior][t]+92.2283)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-94.2205*EP[:SOC_start][t]+92.2283)+0))
+
+    #Sim 125: tau_dis = 100, tau_ch = 100, ff_dis = 1, ff_ch = 50
+    tau_dis = 100
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 50
+
+    if loc_name == "texas"
+        TEGS_input[!, "Min_Cap_MWh"] .= 877363.6041*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 877363.6041*0.01
+    else
+        TEGS_input[!, "Min_Cap_MWh"] .= 376012.9732*0.01
+        TEGS_input[!, "Max_Cap_MWh"] .= 376012.9732*0.01
+    end
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwcharge = 0.0201 * 1e6
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_interior][t]+0)-0.1102))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1103*tanh(5.8173*EP[:SOC_start][t]+0)-0.1102))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_interior][t]+136.7287)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-139.6175*EP[:SOC_start][t]+136.7287)+0))
+    

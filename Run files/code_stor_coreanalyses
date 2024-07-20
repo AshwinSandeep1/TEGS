@@ -1,0 +1,1656 @@
+    ###########################################################################################################################
+
+    #Code for Core Analyses
+
+    ###########################################################################################################################
+
+    #Sim 1: tau_dis = 12, tau_ch = 1.2, ff_dis = 1, ff_ch = 1
+    tau_dis = 12
+	tau_ch = 1.2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_interior][t]+0)-0.0497))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_start][t]+0)-0.0497))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_interior][t]-1.6982)-0.8522*EP[:SOC_interior][t]+0.8421))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_start][t]-1.6982)-0.8522*EP[:SOC_start][t]+0.8421))
+
+    #Sim 2: tau_dis = 12, tau_ch = 6, ff_dis = 1, ff_ch = 1
+    tau_dis = 12
+	tau_ch = 6
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_interior][t]+0)-0.0497))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_start][t]+0)-0.0497))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_interior][t]+2.3581)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_start][t]+2.3581)+0))
+
+    #Sim 3: tau_dis = 12, tau_ch = 12, ff_dis = 1, ff_ch = 1
+    tau_dis = 12
+	tau_ch = 12
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_interior][t]+0)-0.0497))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_start][t]+0)-0.0497))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_interior][t]+3.3026)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_start][t]+3.3026)+0))
+
+    #Sim 4: tau_dis = 12, tau_ch = 60, ff_dis = 1, ff_ch = 1
+    tau_dis = 12
+	tau_ch = 60
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_interior][t]+0)-0.0497))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_start][t]+0)-0.0497))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_interior][t]+5.8242)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_start][t]+5.8242)+0))
+
+    #Sim 5: tau_dis = 12, tau_ch = 120, ff_dis = 1, ff_ch = 1
+    tau_dis = 12
+	tau_ch = 120
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_interior][t]+0)-0.0497))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0538*tanh(3.2501*EP[:SOC_start][t]+0)-0.0497))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_interior][t]+5.8735)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_start][t]+5.8735)+0))
+
+    #Sim 6: tau_dis = 21.6, tau_ch = 1.2, ff_dis = 1, ff_ch = 1
+    tau_dis = 21.6
+	tau_ch = 1.2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_interior][t]+0)-0.0671))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_start][t]+0)-0.0671))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_interior][t]-1.6982)-0.8522*EP[:SOC_interior][t]+0.8421))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_start][t]-1.6982)-0.8522*EP[:SOC_start][t]+0.8421))
+
+    #Sim 7: tau_dis = 21.6, tau_ch = 6, ff_dis = 1, ff_ch = 1
+    tau_dis = 21.6
+	tau_ch = 6
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_interior][t]+0)-0.0671))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_start][t]+0)-0.0671))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_interior][t]+2.3581)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_start][t]+2.3581)+0))
+
+    #Sim 8: tau_dis = 21.6, tau_ch = 12, ff_dis = 1, ff_ch = 1
+    tau_dis = 21.6
+	tau_ch = 12
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_interior][t]+0)-0.0671))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_start][t]+0)-0.0671))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_interior][t]+3.3026)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_start][t]+3.3026)+0))
+
+    #Sim 9: tau_dis = 21.6, tau_ch = 60, ff_dis = 1, ff_ch = 1
+    tau_dis = 21.6
+	tau_ch = 60
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_interior][t]+0)-0.0671))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_start][t]+0)-0.0671))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_interior][t]+5.8242)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_start][t]+5.8242)+0))
+
+    #Sim 10: tau_dis = 21.6, tau_ch = 120, ff_dis = 1, ff_ch = 1
+    tau_dis = 21.6
+	tau_ch = 120
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_interior][t]+0)-0.0671))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0668*tanh(4.2384*EP[:SOC_start][t]+0)-0.0671))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_interior][t]+5.8735)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_start][t]+5.8735)+0))
+
+    #Sim 11: tau_dis = 38.4, tau_ch = 1.2, ff_dis = 1, ff_ch = 1
+    tau_dis = 38.4
+	tau_ch = 1.2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_interior][t]+0)-0.0857))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_start][t]+0)-0.0857))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_interior][t]-1.6982)-0.8522*EP[:SOC_interior][t]+0.8421))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_start][t]-1.6982)-0.8522*EP[:SOC_start][t]+0.8421))
+
+    #Sim 12: tau_dis = 38.4, tau_ch = 6, ff_dis = 1, ff_ch = 1
+    tau_dis = 38.4
+	tau_ch = 6
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_interior][t]+0)-0.0857))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_start][t]+0)-0.0857))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_interior][t]+2.3581)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_start][t]+2.3581)+0))
+
+    #Sim 13: tau_dis = 38.4, tau_ch = 12, ff_dis = 1, ff_ch = 1
+    tau_dis = 38.4
+	tau_ch = 12
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_interior][t]+0)-0.0857))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_start][t]+0)-0.0857))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_interior][t]+3.3026)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_start][t]+3.3026)+0))
+
+    #Sim 14: tau_dis = 38.4, tau_ch = 60, ff_dis = 1, ff_ch = 1
+    tau_dis = 38.4
+	tau_ch = 60
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_interior][t]+0)-0.0857))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_start][t]+0)-0.0857))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_interior][t]+5.8242)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_start][t]+5.8242)+0))
+
+    #Sim 15: tau_dis = 38.4, tau_ch = 120, ff_dis = 1, ff_ch = 1
+    tau_dis = 38.4
+	tau_ch = 120
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_interior][t]+0)-0.0857))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0847*tanh(5.1977*EP[:SOC_start][t]+0)-0.0857))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_interior][t]+5.8735)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_start][t]+5.8735)+0))
+
+    #Sim 16: tau_dis = 67.2, tau_ch = 1.2, ff_dis = 1, ff_ch = 1
+    tau_dis = 67.2
+	tau_ch = 1.2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_interior][t]+0)-0.0990))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_start][t]+0)-0.0990))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_interior][t]-1.6982)-0.8522*EP[:SOC_interior][t]+0.8421))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_start][t]-1.6982)-0.8522*EP[:SOC_start][t]+0.8421))
+
+    #Sim 17: tau_dis = 67.2, tau_ch = 6, ff_dis = 1, ff_ch = 1
+    tau_dis = 67.2
+	tau_ch = 6
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_interior][t]+0)-0.0990))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_start][t]+0)-0.0990))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_interior][t]+2.3581)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_start][t]+2.3581)+0))
+
+    #Sim 18: tau_dis = 67.2, tau_ch = 12, ff_dis = 1, ff_ch = 1
+    tau_dis = 67.2
+	tau_ch = 12
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_interior][t]+0)-0.0990))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_start][t]+0)-0.0990))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_interior][t]+3.3026)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_start][t]+3.3026)+0))
+
+    #Sim 19: tau_dis = 67.2, tau_ch = 60, ff_dis = 1, ff_ch = 1
+    tau_dis = 67.2
+	tau_ch = 60
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_interior][t]+0)-0.0990))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_start][t]+0)-0.0990))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_interior][t]+5.8242)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_start][t]+5.8242)+0))
+
+    #Sim 20: tau_dis = 67.2, tau_ch = 120, ff_dis = 1, ff_ch = 1
+    tau_dis = 67.2
+	tau_ch = 120
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_interior][t]+0)-0.0990))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0984*tanh(5.7546*EP[:SOC_start][t]+0)-0.0990))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_interior][t]+5.8735)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_start][t]+5.8735)+0))
+
+    #Sim 21: tau_dis = 120, tau_ch = 1.2, ff_dis = 1, ff_ch = 1
+    tau_dis = 120
+	tau_ch = 1.2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_interior][t]+0)-0.1157))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_start][t]+0)-0.1157))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_interior][t]-1.6982)-0.8522*EP[:SOC_interior][t]+0.8421))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-42.4869*EP[:SOC_start][t]-1.6982)-0.8522*EP[:SOC_start][t]+0.8421))
+
+    #Sim 22: tau_dis = 120, tau_ch = 6, ff_dis = 1, ff_ch = 1
+    tau_dis = 120
+	tau_ch = 6
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_interior][t]+0)-0.1157))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_start][t]+0)-0.1157))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_interior][t]+2.3581)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.3928*EP[:SOC_start][t]+2.3581)+0))
+
+    #Sim 23: tau_dis = 120, tau_ch = 12, ff_dis = 1, ff_ch = 1
+    tau_dis = 120
+	tau_ch = 12
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_interior][t]+0)-0.1157))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_start][t]+0)-0.1157))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_interior][t]+3.3026)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.3503*EP[:SOC_start][t]+3.3026)+0))
+
+    #Sim 24: tau_dis = 120, tau_ch = 60, ff_dis = 1, ff_ch = 1
+    tau_dis = 120
+	tau_ch = 60
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_interior][t]+0)-0.1157))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_start][t]+0)-0.1157))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_interior][t]+5.8242)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9134*EP[:SOC_start][t]+5.8242)+0))
+
+    #Sim 25: tau_dis = 120, tau_ch = 120, ff_dis = 1, ff_ch = 1
+    tau_dis = 120
+	tau_ch = 120
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 10.7443 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_interior][t]+0)-0.1157))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1163*tanh(5.6972*EP[:SOC_start][t]+0)-0.1157))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_interior][t]+5.8735)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.9804*EP[:SOC_start][t]+5.8735)+0))
+
+    #Sim 26: tau_dis = 15, tau_ch = 1.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 15
+	tau_ch = 1.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_interior][t]+0)-0.0559))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_start][t]+0)-0.0559))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_interior][t]-2.6227)-0.9505*EP[:SOC_interior][t]+0.9398))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_start][t]-2.6227)-0.9505*EP[:SOC_start][t]+0.9398))
+
+    #Sim 27: tau_dis = 15, tau_ch = 7.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 15
+	tau_ch = 7.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_interior][t]+0)-0.0559))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_start][t]+0)-0.0559))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_interior][t]+2.6335)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_start][t]+2.6335)+0))
+
+    #Sim 28: tau_dis = 15, tau_ch = 15, ff_dis = 1, ff_ch = 1
+    tau_dis = 15
+	tau_ch = 15
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_interior][t]+0)-0.0559))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_start][t]+0)-0.0559))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_interior][t]+3.6639)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_start][t]+3.6639)+0))
+
+    #Sim 29: tau_dis = 15, tau_ch = 75, ff_dis = 1, ff_ch = 1
+    tau_dis = 15
+	tau_ch = 75
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_interior][t]+0)-0.0559))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_start][t]+0)-0.0559))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_interior][t]+5.9454)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_start][t]+5.9454)+0))
+
+    #Sim 30: tau_dis = 15, tau_ch = 150, ff_dis = 1, ff_ch = 1
+    tau_dis = 15
+	tau_ch = 150
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_interior][t]+0)-0.0559))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0577*tanh(3.6147*EP[:SOC_start][t]+0)-0.0559))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_interior][t]+5.6359)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_start][t]+5.6359)+0))
+
+    #Sim 31: tau_dis = 27, tau_ch = 1.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 27
+	tau_ch = 1.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_interior][t]+0)-0.0748))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_start][t]+0)-0.0748))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_interior][t]-2.6227)-0.9505*EP[:SOC_interior][t]+0.9398))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_start][t]-2.6227)-0.9505*EP[:SOC_start][t]+0.9398))
+
+    #Sim 32: tau_dis = 27, tau_ch = 7.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 27
+	tau_ch = 7.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_interior][t]+0)-0.0748))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_start][t]+0)-0.0748))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_interior][t]+2.6335)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_start][t]+2.6335)+0))
+
+    #Sim 33: tau_dis = 27, tau_ch = 15, ff_dis = 1, ff_ch = 1
+    tau_dis = 27
+	tau_ch = 15
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_interior][t]+0)-0.0748))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_start][t]+0)-0.0748))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_interior][t]+3.6639)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_start][t]+3.6639)+0))
+
+    #Sim 34: tau_dis = 27, tau_ch = 75, ff_dis = 1, ff_ch = 1
+    tau_dis = 27
+	tau_ch = 75
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_interior][t]+0)-0.0748))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_start][t]+0)-0.0748))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_interior][t]+5.9454)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_start][t]+5.9454)+0))
+
+    #Sim 35: tau_dis = 27, tau_ch = 150, ff_dis = 1, ff_ch = 1
+    tau_dis = 27
+	tau_ch = 150
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_interior][t]+0)-0.0748))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0740*tanh(4.6336*EP[:SOC_start][t]+0)-0.0748))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_interior][t]+5.6359)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_start][t]+5.6359)+0))
+
+    #Sim 36: tau_dis = 48, tau_ch = 1.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 48
+	tau_ch = 1.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_interior][t]+0)-0.0902))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_start][t]+0)-0.0902))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_interior][t]-2.6227)-0.9505*EP[:SOC_interior][t]+0.9398))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_start][t]-2.6227)-0.9505*EP[:SOC_start][t]+0.9398))
+
+    #Sim 37: tau_dis = 48, tau_ch = 7.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 48
+	tau_ch = 7.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_interior][t]+0)-0.0902))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_start][t]+0)-0.0902))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_interior][t]+2.6335)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_start][t]+2.6335)+0))
+
+    #Sim 38: tau_dis = 48, tau_ch = 15, ff_dis = 1, ff_ch = 1
+    tau_dis = 48
+	tau_ch = 15
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_interior][t]+0)-0.0902))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_start][t]+0)-0.0902))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_interior][t]+3.6639)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_start][t]+3.6639)+0))
+
+    #Sim 39: tau_dis = 48, tau_ch = 75, ff_dis = 1, ff_ch = 1
+    tau_dis = 48
+	tau_ch = 75
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_interior][t]+0)-0.0902))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_start][t]+0)-0.0902))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_interior][t]+5.9454)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_start][t]+5.9454)+0))
+
+    #Sim 40: tau_dis = 48, tau_ch = 150, ff_dis = 1, ff_ch = 1
+    tau_dis = 48
+	tau_ch = 150
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_interior][t]+0)-0.0902))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0893*tanh(5.4701*EP[:SOC_start][t]+0)-0.0902))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_interior][t]+5.6359)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_start][t]+5.6359)+0))
+
+    #Sim 41: tau_dis = 84, tau_ch = 1.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 84
+	tau_ch = 1.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_interior][t]+0)-0.1087))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_start][t]+0)-0.1087))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_interior][t]-2.6227)-0.9505*EP[:SOC_interior][t]+0.9398))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_start][t]-2.6227)-0.9505*EP[:SOC_start][t]+0.9398))
+
+    #Sim 42: tau_dis = 84, tau_ch = 7.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 84
+	tau_ch = 7.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_interior][t]+0)-0.1087))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_start][t]+0)-0.1087))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_interior][t]+2.6335)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_start][t]+2.6335)+0))
+
+    #Sim 43: tau_dis = 84, tau_ch = 15, ff_dis = 1, ff_ch = 1
+    tau_dis = 84
+	tau_ch = 15
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_interior][t]+0)-0.1087))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_start][t]+0)-0.1087))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_interior][t]+3.6639)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_start][t]+3.6639)+0))
+
+    #Sim 44: tau_dis = 84, tau_ch = 75, ff_dis = 1, ff_ch = 1
+    tau_dis = 84
+	tau_ch = 75
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_interior][t]+0)-0.1087))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_start][t]+0)-0.1087))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_interior][t]+5.9454)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_start][t]+5.9454)+0))
+
+    #Sim 45: tau_dis = 84, tau_ch = 150, ff_dis = 1, ff_ch = 1
+    tau_dis = 84
+	tau_ch = 150
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_interior][t]+0)-0.1087))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1084*tanh(5.8576*EP[:SOC_start][t]+0)-0.1087))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_interior][t]+5.6359)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_start][t]+5.6359)+0))
+
+    #Sim 46: tau_dis = 150, tau_ch = 1.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 150
+	tau_ch = 1.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_interior][t]+0)-0.1204))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_start][t]+0)-0.1204))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_interior][t]-2.6227)-0.9505*EP[:SOC_interior][t]+0.9398))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (exp(-68.4383*EP[:SOC_start][t]-2.6227)-0.9505*EP[:SOC_start][t]+0.9398))
+
+    #Sim 47: tau_dis = 150, tau_ch = 7.5, ff_dis = 1, ff_ch = 1
+    tau_dis = 150
+	tau_ch = 7.5
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_interior][t]+0)-0.1204))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_start][t]+0)-0.1204))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_interior][t]+2.6335)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-2.6719*EP[:SOC_start][t]+2.6335)+0))
+
+    #Sim 48: tau_dis = 150, tau_ch = 15, ff_dis = 1, ff_ch = 1
+    tau_dis = 150
+	tau_ch = 15
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_interior][t]+0)-0.1204))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_start][t]+0)-0.1204))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_interior][t]+3.6639)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.7169*EP[:SOC_start][t]+3.6639)+0))
+
+    #Sim 49: tau_dis = 150, tau_ch = 75, ff_dis = 1, ff_ch = 1
+    tau_dis = 150
+	tau_ch = 75
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_interior][t]+0)-0.1204))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_start][t]+0)-0.1204))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_interior][t]+5.9454)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0397*EP[:SOC_start][t]+5.9454)+0))
+
+    #Sim 50: tau_dis = 150, tau_ch = 150, ff_dis = 1, ff_ch = 1
+    tau_dis = 150
+	tau_ch = 150
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 12.9365 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_interior][t]+0)-0.1204))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1218*tanh(5.4540*EP[:SOC_start][t]+0)-0.1204))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_interior][t]+5.6359)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.7473*EP[:SOC_start][t]+5.6359)+0))
+
+    #Sim 51: tau_dis = 20, tau_ch = 2, ff_dis = 1, ff_ch = 1
+    tau_dis = 20
+	tau_ch = 2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_interior][t]+0)-0.0646))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_start][t]+0)-0.0646))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_interior][t]^3+0.2281*EP[:SOC_interior][t]^2-0.8767*EP[:SOC_interior][t]+0.9742))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_start][t]^3+0.2281*EP[:SOC_start][t]^2-0.8767*EP[:SOC_start][t]+0.9742))
+
+    #Sim 52: tau_dis = 20, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 20
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_interior][t]+0)-0.0646))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_start][t]+0)-0.0646))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 53: tau_dis = 20, tau_ch = 20, ff_dis = 1, ff_ch = 1
+    tau_dis = 20
+	tau_ch = 20
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_interior][t]+0)-0.0646))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_start][t]+0)-0.0646))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_interior][t]+4.1570)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_start][t]+4.1570)+0))
+
+    #Sim 54: tau_dis = 20, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 20
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_interior][t]+0)-0.0646))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_start][t]+0)-0.0646))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 55: tau_dis = 20, tau_ch = 200, ff_dis = 1, ff_ch = 1
+    tau_dis = 20
+	tau_ch = 200
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5667 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_interior][t]+0)-0.0646))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0646*tanh(4.1038*EP[:SOC_start][t]+0)-0.0646))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_interior][t]+5.2574)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_start][t]+5.2574)+0))
+
+    #Sim 56: tau_dis = 36, tau_ch = 2, ff_dis = 1, ff_ch = 1
+    tau_dis = 36
+	tau_ch = 2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_interior][t]+0)-0.0842))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_start][t]+0)-0.0842))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_interior][t]^3+0.2281*EP[:SOC_interior][t]^2-0.8767*EP[:SOC_interior][t]+0.9742))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_start][t]^3+0.2281*EP[:SOC_start][t]^2-0.8767*EP[:SOC_start][t]+0.9742))
+
+    #Sim 57: tau_dis = 36, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 36
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_interior][t]+0)-0.0842))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_start][t]+0)-0.0842))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 58: tau_dis = 36, tau_ch = 20, ff_dis = 1, ff_ch = 1
+    tau_dis = 36
+	tau_ch = 20
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_interior][t]+0)-0.0842))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_start][t]+0)-0.0842))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_interior][t]+4.1570)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_start][t]+4.1570)+0))
+
+    #Sim 59: tau_dis = 36, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 36
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_interior][t]+0)-0.0842))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_start][t]+0)-0.0842))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 60: tau_dis = 36, tau_ch = 200, ff_dis = 1, ff_ch = 1
+    tau_dis = 36
+	tau_ch = 200
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5646 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_interior][t]+0)-0.0842))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0832*tanh(5.1028*EP[:SOC_start][t]+0)-0.0842))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_interior][t]+5.2574)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_start][t]+5.2574)+0))
+
+    #Sim 61: tau_dis = 64, tau_ch = 2, ff_dis = 1, ff_ch = 1
+    tau_dis = 64
+	tau_ch = 2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_interior][t]+0)-0.0983))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_start][t]+0)-0.0983))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_interior][t]^3+0.2281*EP[:SOC_interior][t]^2-0.8767*EP[:SOC_interior][t]+0.9742))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_start][t]^3+0.2281*EP[:SOC_start][t]^2-0.8767*EP[:SOC_start][t]+0.9742))
+
+    #Sim 62: tau_dis = 64, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 64
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_interior][t]+0)-0.0983))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_start][t]+0)-0.0983))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 63: tau_dis = 64, tau_ch = 20, ff_dis = 1, ff_ch = 1
+    tau_dis = 64
+	tau_ch = 20
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_interior][t]+0)-0.0983))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_start][t]+0)-0.0983))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_interior][t]+4.1570)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_start][t]+4.1570)+0))
+
+    #Sim 64: tau_dis = 64, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 64
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_interior][t]+0)-0.0983))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_start][t]+0)-0.0983))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 65: tau_dis = 64, tau_ch = 200, ff_dis = 1, ff_ch = 1
+    tau_dis = 64
+	tau_ch = 200
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5633 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_interior][t]+0)-0.0983))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.0976*tanh(5.7329*EP[:SOC_start][t]+0)-0.0983))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_interior][t]+5.2574)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_start][t]+5.2574)+0))
+
+    #Sim 66: tau_dis = 112, tau_ch = 2, ff_dis = 1, ff_ch = 1
+    tau_dis = 112
+	tau_ch = 2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_interior][t]+0)-0.1144))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_start][t]+0)-0.1144))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_interior][t]^3+0.2281*EP[:SOC_interior][t]^2-0.8767*EP[:SOC_interior][t]+0.9742))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_start][t]^3+0.2281*EP[:SOC_start][t]^2-0.8767*EP[:SOC_start][t]+0.9742))
+
+    #Sim 67: tau_dis = 112, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 112
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_interior][t]+0)-0.1144))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_start][t]+0)-0.1144))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 68: tau_dis = 112, tau_ch = 20, ff_dis = 1, ff_ch = 1
+    tau_dis = 112
+	tau_ch = 20
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_interior][t]+0)-0.1144))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_start][t]+0)-0.1144))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_interior][t]+4.1570)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_start][t]+4.1570)+0))
+
+    #Sim 69: tau_dis = 112, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 112
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_interior][t]+0)-0.1144))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_start][t]+0)-0.1144))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 70: tau_dis = 112, tau_ch = 200, ff_dis = 1, ff_ch = 1
+    tau_dis = 112
+	tau_ch = 200
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5624 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_interior][t]+0)-0.1144))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1147*tanh(5.7534*EP[:SOC_start][t]+0)-0.1144))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_interior][t]+5.2574)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_start][t]+5.2574)+0))
+
+    #Sim 71: tau_dis = 200, tau_ch = 2, ff_dis = 1, ff_ch = 1
+    tau_dis = 200
+	tau_ch = 2
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_interior][t]+0)-0.1346))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_start][t]+0)-0.1346))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_interior][t]^3+0.2281*EP[:SOC_interior][t]^2-0.8767*EP[:SOC_interior][t]+0.9742))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (-0.3492*EP[:SOC_start][t]^3+0.2281*EP[:SOC_start][t]^2-0.8767*EP[:SOC_start][t]+0.9742))
+
+    #Sim 72: tau_dis = 200, tau_ch = 10, ff_dis = 1, ff_ch = 1
+    tau_dis = 200
+	tau_ch = 10
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_interior][t]+0)-0.1346))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_start][t]+0)-0.1346))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_interior][t]+3.0285)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-3.0723*EP[:SOC_start][t]+3.0285)+0))
+
+    #Sim 73: tau_dis = 200, tau_ch = 20, ff_dis = 1, ff_ch = 1
+    tau_dis = 200
+	tau_ch = 20
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_interior][t]+0)-0.1346))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_start][t]+0)-0.1346))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_interior][t]+4.1570)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-4.2177*EP[:SOC_start][t]+4.1570)+0))
+
+    #Sim 74: tau_dis = 200, tau_ch = 100, ff_dis = 1, ff_ch = 1
+    tau_dis = 200
+	tau_ch = 100
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_interior][t]+0)-0.1346))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_start][t]+0)-0.1346))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_interior][t]+5.9909)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-6.0946*EP[:SOC_start][t]+5.9909)+0))
+
+    #Sim 75: tau_dis = 200, tau_ch = 200, ff_dis = 1, ff_ch = 1
+    tau_dis = 200
+	tau_ch = 200
+    ff_dis = 1
+    ff_ch = 1
+
+    costpermwdischarge = 0.5618 * 1e6
+    costpermwhstor = 16.5040 * 1e3
+
+    @NLconstraint(EP, SOCmin_interior[t in INTERIOR_SUBPERIODS], EP[:SOC_interior][t] >= 1-(1/1.2)) 
+    @NLconstraint(EP, SOCmin_start[t in START_SUBPERIODS], EP[:SOC_start][t] >= 1-(1/1.2))
+
+    @NLconstraint(EP, TEGSeffpower_interior[t in INTERIOR_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_interior][t]+0)-0.1346))
+    @NLconstraint(EP, TEGSeffpower_start[t in START_SUBPERIODS], EP[:vP][end,t] <= EP[:eTotalCap][end] *
+    (1.1377*tanh(5.0609*EP[:SOC_start][t]+0)-0.1346))
+
+    @NLconstraint(EP, TEGSeffcharge_interior[t in INTERIOR_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_interior][t]+5.2574)+0))
+    @NLconstraint(EP, TEGSeffcharge_start[t in START_SUBPERIODS], EP[:vCHARGE][end,t] <= EP[:eTotalCapCharge][end] *
+    (1*tanh(-5.3818*EP[:SOC_start][t]+5.2574)+0))
+    
